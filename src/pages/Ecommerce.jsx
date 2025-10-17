@@ -1,7 +1,8 @@
 import React from "react";
 
 import { BsCurrencyDollar } from "react-icons/bs";
-import { GoPrimitiveDot } from "react-icons/go";
+import { GoDotFill } from "react-icons/go";
+
 import { Stacked, Pie, Button, SparkLine } from "../components";
 
 import {
@@ -10,6 +11,12 @@ import {
   ecomPieChartData,
 } from "../data/dummy";
 import { useStateContext } from "../contexts/ContextProvider";
+
+const colorMap = {
+  "red-600": "text-red-600",
+  "green-600": "text-green-600",
+};
+
 const Ecommerce = () => {
   return (
     <div className="mt-12 ">
@@ -19,6 +26,65 @@ const Ecommerce = () => {
             <div>
               <p className="font-bold text-gray-400">Earnings</p>
               <p className="text-2xl ">$89,567.10</p>
+            </div>
+          </div>
+          <div className="mt-6 ">
+            <Button
+              color="white"
+              bgColor="blue"
+              text="Download"
+              borderRadius="10px"
+              size="md"
+            ></Button>
+          </div>
+        </div>
+        <div className="flex m-3 flex-wrap justify-center gap-1 items-center ">
+          {earningData.map((item) => (
+            <div
+              key={item.title}
+              className="bg-white dark:text-gray-200 dark:bg-secondary-dark-bg md:w-56 p-4 pt-9 rounded-2xl  "
+            >
+              <button
+                type="button"
+                style={{
+                  color: item.iconColor,
+                  backgroundColor: item.iconBg,
+                }}
+                className="text-2xl opacity-0.9 rounded-full  p-4 hover:drop-shadow-xl  "
+              >
+                {item.icon}
+              </button>
+              <p className="mt-3 ">
+                <span className="text-lg font-semibold "> {item.amount}</span>
+                <span className={`text-sm ml-2 ${colorMap[item.pcColor]}`}>
+                  {item.percentage}
+                </span>
+              </p>
+              <p className="text-gray-400 mt-1">{item.title}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="flex gap-10 flex-wrap justify-center">
+        <div
+          className="bg-white 
+        dark:text-gray-200 m-3 p-4 rounded-2xl md:w-780 dark:bg-secondary-dark-bg"
+        >
+          <div className="flex justify-between ">
+            <p className="font-semibold text-xl "> Revenue Updates</p>
+            <div className="flex items-center gap-4 ">
+              <p className="flex items-center gap-2  text-gray-600 hover:drop-shadow-xl">
+                <span>
+                  <GoDotFill />
+                </span>
+                <span>Expense</span>
+              </p>
+              <p className="flex items-center gap-2  text-green-400 hover:drop-shadow-xl">
+                <span>
+                  <GoDotFill />
+                </span>
+                <span>Budget</span>
+              </p>
             </div>
           </div>
         </div>
